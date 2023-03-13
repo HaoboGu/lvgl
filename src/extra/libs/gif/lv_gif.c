@@ -131,6 +131,7 @@ static void lv_gif_destructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 static void next_frame_task_cb(lv_timer_t * t)
 {
     lv_obj_t * obj = t->user_data;
+    if(lv_obj_is_visible(obj) == false) return;   
     lv_gif_t * gifobj = (lv_gif_t *) obj;
     uint32_t elaps = lv_tick_elaps(gifobj->last_call);
     if(elaps < gifobj->gif->gce.delay * 10) return;
